@@ -1,7 +1,12 @@
-FROM python:3.7
+# syntax=docker/dockerfile:1
+
+FROM python:3.8-slim-buster
+
 WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+
 COPY . .
-RUN pip install gunicorn
-RUN pip install -r requirements.txt
-ENV PORT=80
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 main:app
+
+CMD ["python3", "-m" , "flask", "run", "--host=0.0.0.0"]
