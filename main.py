@@ -14,7 +14,6 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-
 @app.route('/predict_weather', methods=['POST'])
 def predict_weather():
     if request.method == 'POST':
